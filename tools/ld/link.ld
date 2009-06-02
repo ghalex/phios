@@ -12,13 +12,13 @@ SECTIONS
     
     .data :
     {
-    	start_ctors = .; _start_ctors = .; __start_ctors = .;
+    	startCtors = .; _startCtors = .; __startCtors = .;
         *(.ctors)
-        end_ctors = .; _end_ctors = .; __end_ctors = .;
+        endCtors = .; _endCtors = .; __endCtors = .;
          
-        start_dtors = .; _start_dtors = .; __start_dtors = .;
+        startDtors = .; _startDtors = .; __startDtors = .;
    		*(.dtor*)
-   		end_dtors = .; _end_dtors = .; __end_dtors = .;
+   		endDtors = .; _endDtors = .; __endDtors = .;
    
         data = .; _data = .; __data = .;
         *(.data)

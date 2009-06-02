@@ -1,14 +1,15 @@
 # phios kernel makefile
 # Directories
-INCLUDE_PATHS = -Idrivers
+INCLUDE_PATHS = -Idrivers -Icompiler
 
 # Macros
 RLIB		= ranlib
 GCCFLAGS	= $(INCLUDE_PATHS) -nostartfiles -nostdlib -fno-rtti -fno-exceptions
 
 # Objects
-DRIVERS_OBJECTS	= drivers/video/Text.o
-OBJECTS			= main.o Kernel.o $(DRIVERS_OBJECTS)
+COMPILER_OBJECTS	= compiler/CppSupport.o compiler/Compiler.o
+DRIVERS_OBJECTS		= drivers/video/Text.o
+OBJECTS				= main.o Kernel.o $(COMPILER_OBJECTS) $(DRIVERS_OBJECTS) 
 
 # Kernel
 KERNEL		= Kernel.a

@@ -22,12 +22,10 @@ namespace kernel {
 	{
 	}
 
-	void Kernel::initialize()
+	void Kernel::main()
 	{
-		video::Text videoDriver;
-
-		videoDriver.clear();
-		videoDriver.write("Un test");
+		Kernel::out.clear();
+		Kernel::out.write("Static objects works! Hehe");
 	}
 }
 }

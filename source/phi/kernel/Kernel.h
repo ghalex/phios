@@ -26,7 +26,7 @@ namespace kernel {
 			Kernel();
 			~Kernel();
 
-			void initialize();
+			void main();
 	};
 
 }

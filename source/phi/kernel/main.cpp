@@ -6,13 +6,19 @@
  */
 
 #include "Kernel.h"
+#include "Compiler.h"
 
 using namespace phi;
 using namespace kernel;
+using namespace compiler;
+
+Kernel kernelObj;
 
 extern "C" void _main( struct multiboot_data* mbd, unsigned int magic )
 {
-	Kernel objKernel;
-	objKernel.initialize();
+	Compiler compiler;
+	compiler.enableGlobalObjects();
+
+	kernelObj.main();
 
 }
