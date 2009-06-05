@@ -6,18 +6,19 @@
  */
 
 #include "Text.h"
+#include "x86/IoPort.h"
 
 namespace phi {
 namespace kernel {
 namespace drivers {
 namespace video {
 
-	Text::Text()
+	using namespace processor;
+
+	Text::Text() :
+		cursorX(0), cursorY(0)
 	{
 		videoMemory = (unsigned short*) 0xB8000;
-
-		cursorX = 0;
-		cursorY = 0;
 
 		attrib = 0x0F;
 		blank  = 0x20 | (attrib << 8);
@@ -103,14 +104,17 @@ namespace video {
 
 	void Text::moveCursor()
 	{
-		/*
 		unsigned short temp = cursorY * 80 + cursorX;
 
-		outb(0x3D4, 14);
-		outb(0x3D5, temp >> 8);
-		outb(0x3D4, 15);
-		outb(0x3D5, temp);
-		*/
+		x86::IoPort ioPort;
+		ioPort.allocate(0x3D4, 2);
+
+		ioPort.write8(14);
+		ioPort.write8(temp >> 8, 1);
+		ioPort.write8(15);
+		ioPort.write8(temp, 1);
+
+		ioPort.free();
 	}
 
 }
